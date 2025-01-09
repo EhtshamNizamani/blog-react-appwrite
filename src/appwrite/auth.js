@@ -34,7 +34,13 @@ export class AuthService {
     }
   }
 
-  async getCurrentUser() {}
+  async getCurrentUser() {
+    try {
+      return await this.account.get();
+    } catch (error) {
+      console.log("Appwrite serive :: logout :: error", error);
+    }
+  }
   async logout() {
     try {
       await this.account.deleteSessions();
@@ -43,3 +49,7 @@ export class AuthService {
     }
   }
 }
+
+const authService = new AuthService();
+
+export default authService;
