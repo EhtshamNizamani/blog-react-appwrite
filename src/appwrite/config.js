@@ -30,6 +30,49 @@ class Service {
       console.log("Appwrite serive :: createPost :: error", error);
     }
   }
+  async getPost({ slug }) {
+    try {
+      const post = await this.database.getDocument(
+        conf.databaseId,
+        conf.collectionId,
+        slug
+      );
+      if (post) {
+        return post;
+      }
+      return null;
+    } catch (error) {
+      console.log("Appwrite serive :: getPost :: error", error);
+    }
+  }
+
+  async deletePost({ slug }) {
+    try {
+      await this.database.deleteDocument(
+        conf.databaseId,
+        conf.collectionId,
+        slug
+      );
+      return true;
+    } catch (error) {
+      console.log("Appwrite serive :: deletePost :: error", error);
+      return false;
+    }
+  }
+  async updatePost(slug, { title, content, featuredImage, status }) {
+    return await database.updateDocument(
+      conf.databaseId,
+      conf.collectionId,
+      slug,
+      {
+        title,
+        content,
+        featuredImage,
+        status,
+        userId,
+      }
+    );
+  }
 }
 
 const service = new Service();
