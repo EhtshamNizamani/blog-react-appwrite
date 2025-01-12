@@ -60,18 +60,63 @@ class Service {
     }
   }
   async updatePost(slug, { title, content, featuredImage, status }) {
-    return await database.updateDocument(
-      conf.databaseId,
-      conf.collectionId,
-      slug,
-      {
-        title,
-        content,
-        featuredImage,
-        status,
-        userId,
-      }
-    );
+    try {
+      return await database.updateDocument(
+        conf.databaseId,
+        conf.collectionId,
+        slug,
+        {
+          title,
+          content,
+          featuredImage,
+          status,
+          userId,
+        }
+      );
+    } catch (error) {
+      console.log("Appwrite serive :: getListOfPost :: error", error);
+      return false;
+    }
+  }
+  async getListOfPost(queries = [Query.equal("status", ["active"])]) {
+    try {
+      return await database.listDocuments(
+        conf.databaseId,
+        conf.collectionId,
+        queries
+      );
+    } catch (error) {
+      console.log("Appwrite serive :: getListOfPost :: error", error);
+      return false;
+    }
+  }
+
+  async uploadFile(file) {
+    try {
+      return await bucket.createFile(conf.bucketId, ID.unique(), file);
+    } catch (error) {
+      console.log("Appwrite serive :: uploadFile :: error", error);
+      return;
+    }
+  }
+
+  async deleteFile(fileId) {
+    try {
+      await this.bucket.deleteFile(conf.bucketId, fileId);
+      return true;
+    } catch (error) {
+      console.log("Appwrite serive :: deleteFile :: error", error);
+      return false;
+    }
+  }
+  async getFilePreview(fileId) {
+    try {
+      return await this.bucket.getFilePreview(conf.bucketId, fileId);
+    } catch (error) {
+      console.log("Appwrite serive :: createFile :: error", error);
+
+      return false;
+    }
   }
 }
 
