@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { logout } from '../../store/authSlicer';
 import { Container, Logo } from '../index'
 const Header = () => {
 
-    const authStatus = useSelector((state) => state.auth.status)
+    const authStatus = useSelector((state) => state.auth?.status ?? false);
 
     const navItems = [
         {
@@ -41,9 +41,11 @@ const Header = () => {
                     <Logo width='80px' />
 
                 </div>
-                <ul>
+                <ul className='flex gap-4 align-center border '>
                     {navItems.map((item) => {
-                        return <li key={item.name}> <Link to={item.slug} >{item.name}</Link>;
+                        return <li key={item.name}>
+                            <Link to={item.slug}>{item.name}</Link>
+
                         </li>
                     })}
                 </ul>

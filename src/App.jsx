@@ -8,6 +8,7 @@ import { Header, Footer } from "../src/components/index";
 import { Outlet } from "react-router-dom";
 function App() {
 
+  const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -16,10 +17,10 @@ function App() {
       .then((userData) => {
         if (userData) {
           console.log("Logged in user:", userData);
-          useDispatch(login({ userData }));
+          dispatch(login({ userData }));
         } else {
           console.log("No user logged in. Guest session detected.");
-          useDispatch(logout());
+          dispatch(logout());
         }
       })
       .catch((error) => console.log("Error fetching user:", error))

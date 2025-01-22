@@ -36,6 +36,8 @@ export class AuthService {
 
   async getCurrentUser() {
     try {
+      console.log("CHecknig user info ");
+
       const user = await this.account.get();
       console.log("CHecknig user info " + user);
       return user;
