@@ -22,7 +22,7 @@ function App() {
           useDispatch(logout());
         }
       })
-      .catch((error) => console.error("Error fetching user:", error))
+      .catch((error) => console.log("Error fetching user:", error))
       .finally(() => setLoading(false));
   }, []);
 

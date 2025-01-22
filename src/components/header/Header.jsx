@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../store/authSlicer';
-import { Container } from '../index'
+import { Container, Logo } from '../index'
 const Header = () => {
 
     const authStatus = useSelector((state) => state.auth.status)
@@ -36,6 +36,19 @@ const Header = () => {
     ]
     return <header>
         <Container>
+            <div className='flex '>
+                <div>
+                    <Logo width='80px' />
+
+                </div>
+                <ul>
+                    {navItems.map((item) => {
+                        return <li key={item.name}> <Link to={item.slug} >{item.name}</Link>;
+                        </li>
+                    })}
+                </ul>
+
+            </div>
 
         </Container>
     </header>
