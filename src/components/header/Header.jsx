@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, NavLink } from 'react-router-dom';
 import { logout } from '../../store/authSlicer';
 import { Container, Logo } from '../index'
 const Header = () => {
@@ -36,21 +36,22 @@ const Header = () => {
     ]
     return <header>
         <Container>
-            <div className='flex '>
-                <div>
-                    <Logo width='80px' />
-
+            <div className="flex justify-between items-center bg-slate-400">
+                {/* Logo on the left */}
+                <div className="logo">
+                    <Logo />
                 </div>
-                <ul className='flex gap-4 align-center border '>
-                    {navItems.map((item) => {
-                        return <li key={item.name}>
-                            <Link to={item.slug}>{item.name}</Link>
 
+                {/* Navigation items */}
+                <ul className="flex gap-3 items-center pr-4">
+                    {navItems.map((item) => (
+                        <li key={item.name}>
+                            <NavLink to={item.slug} className={({ isActive }) => isActive ? "text-red-600 font-bold hover:text-red-500" : "text-gray-700 hover:text-red-500"} >{item.name}</NavLink>
                         </li>
-                    })}
+                    ))}
                 </ul>
-
             </div>
+
 
         </Container>
     </header>
