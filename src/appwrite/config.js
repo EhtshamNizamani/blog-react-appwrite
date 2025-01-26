@@ -7,8 +7,8 @@ class Service {
 
   constructor() {
     this.client.setEndpoint(conf.appWriteUrl).setProject(conf.projectId);
-    this.database(this.client);
-    this.bucket(this.client);
+    this.databases = new Databases(this.client);
+    this.bucket = new Storage(this.client);
   }
 
   async createPost({ title, slug, content, featuredImage, status, userId }) {
