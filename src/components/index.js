@@ -3,11 +3,12 @@ import Footer from "./Footer/Footer";
 import Button from "./Button";
 import Logo from "./Logo";
 import Container from "./Container/Container";
-import Input from "./input";
+import Input from "./Input";
 import RTE from "./RTE";
 import PostCard from "./PostCard";
 import Select from "./Select";
-
+import Signup from "./Signup";
+import Login from "./Login";
 export {
   Header,
   Select,
@@ -18,4 +19,6 @@ export {
   Button,
   Logo,
   Container,
+  Signup,
+  Login,
 };
