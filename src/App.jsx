@@ -6,34 +6,32 @@ import authService from "../src/appwrite/auth";
 import { Header, Footer } from "../src/components/index";
 import { Outlet } from "react-router-dom";
 function App() {
+  const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
 
-  const dispatch = useDispatch();
-
-  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    authService
-      .getCurrentUser()
+    authService.getCurrentUser()
       .then((userData) => {
         if (userData) {
-          console.log("Logged in user:", userData);
-          dispatch(login({ userData }));
+          dispatch(login({ userData }))
         } else {
-          console.log("No user logged in. Guest session detected.");
-          dispatch(logout());
+          dispatch(logout())
         }
       })
-      .catch((error) => console.log("Error fetching user:", error))
-      .finally(() => setLoading(false));
-  }, []);
+      .finally(() => setLoading(false))
+  }, [])
 
-  return !loading ? (<div>
-    <Header />
-    <main>
-      {/* <Outlet/> */}
-
-    </main>
-    <Footer />
-  </div>) : (<div>Loading ......</div>)
+  return !loading ? (
+    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+      <div className='w-full block'>
+        <Header />
+        <main>
+          TODO:  <Outlet />
+        </main>
+        <Footer />
+      </div>
+    </div>
+  ) : null
 }
 
 export default App
