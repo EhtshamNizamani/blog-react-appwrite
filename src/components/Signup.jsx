@@ -4,7 +4,7 @@ import { Logo, Button, Input } from "./index";
 import { useForm } from "react-hook-form";
 import authService from "../appwrite/auth";
 import { login as authLogin } from "../store/authSlicer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Signup() {
     const { error, setError } = useState("");

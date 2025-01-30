@@ -1,17 +1,15 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
-import { useNavigate, Link, NavLink } from 'react-router-dom';
-import { logout } from '../../store/authSlicer';
-import { Container, Logo } from '../index'
+import React from "react";
+import { useSelector } from "react-redux";
+import { useNavigate, Link, NavLink } from "react-router-dom";
+import { Container, Logo, LogoutBtn } from "../index";
 const Header = () => {
-
-    const authStatus = useSelector((state) => state.auth?.status ?? false);
-
+    const authStatus = useSelector((state) => state.auth?.status);
+    const navigate = useNavigate();
     const navItems = [
         {
-            name: 'Home',
+            name: "Home",
             slug: "/",
-            active: true
+            active: true,
         },
         {
             name: "Login",
@@ -33,28 +31,41 @@ const Header = () => {
             slug: "/add-post",
             active: authStatus,
         },
-    ]
-    return <header>
-        <Container>
-            <div className="flex justify-between items-center bg-slate-400">
-                {/* Logo on the left */}
-                <div className="logo">
-                    <Logo />
+    ];
+    return (
+        <header>
+            <Container>
+                <div className="flex justify-between items-center bg-slate-400">
+                    {/* Logo on the left */}
+                    <div className="logo">
+                        <Logo />
+                    </div>
+
+                    {/* Navigation items */}
+                    <ul className="flex gap-3 items-center pr-4">
+                        {navItems.map((item) =>
+                            item.active ? (
+                                <li key={item.name}>
+                                    <button
+                                        onClick={() => navigate(item.slug)}
+                                        className="inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full"
+                                    >
+                                        {item.name}
+                                    </button>{" "}
+                                </li>
+                            ) : null
+                        )}
+
+                        {authStatus && (
+                            <li>
+                                <LogoutBtn />
+                            </li>
+                        )}
+                    </ul>
                 </div>
-
-                {/* Navigation items */}
-                <ul className="flex gap-3 items-center pr-4">
-                    {navItems.map((item) => (
-                        <li key={item.name}>
-                            <NavLink to={item.slug} className={({ isActive }) => isActive ? "text-red-600 font-bold hover:text-red-500" : "text-gray-700 hover:text-red-500"} >{item.name}</NavLink>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-
-
-        </Container>
-    </header>
+            </Container>
+        </header>
+    );
 };
 
 export default Header;

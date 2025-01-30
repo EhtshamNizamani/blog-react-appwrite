@@ -11,6 +11,8 @@ import Signup from "./Signup";
 import Login from "./Login";
 import PostForm from "./post-form/PostForm";
 import AuthLayout from "./AuthLayout";
+import LogoutBtn from "./Header/LogoutBtn";
+
 export {
   Header,
   Select,
@@ -24,5 +26,6 @@ export {
   Signup,
   Login,
   PostForm,
+  LogoutBtn,
   AuthLayout,
 };

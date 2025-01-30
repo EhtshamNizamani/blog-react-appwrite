@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { Container, PostCard } from '../index'
 import appwriteService from '../../appwrite/config'
+import { useSelector } from 'react-redux';
 function Home() {
     const [posts, setPosts] = useState([]);
+    const authStatus = useSelector(state => state.auth?.status)
     useEffect(() => {
-        appwriteService.getListOfPost([]).then((posts) => {
+        if (authStatus) {
+            appwriteService.getListOfPost([]).then((posts) => {
 
-            if (posts) {
-                setPosts(posts.documents)
-            }
+                if (posts) {
+                    setPosts(posts.documents)
+                }
 
-        })
+            })
+        }
+
     }, [])
 
     if (posts.length === 0) {
@@ -19,7 +24,7 @@ function Home() {
                 <Container>
                     <div className="flex flex-wrap">
                         <div className="p-2 w-full">
-                            <h1 className="text-2xl font-bold hover:text-gray-500">
+                            <h1 className="text-2xl font-bold">
                                 There is no any post yet!
                             </h1>
                         </div>

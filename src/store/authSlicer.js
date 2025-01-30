@@ -14,6 +14,7 @@ const authSlicer = createSlice({
       state.userData = action.payload.userData;
     },
     logout: (state) => {
+      console.log("This is state " + state);
       state.status = false;
       state.userData = null;
     },

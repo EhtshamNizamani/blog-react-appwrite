@@ -1,13 +1,13 @@
 import React, { useId } from "react";
 
-function select({ className = "", lable, options, ...props }, ref) {
+function select({ className = "", label, options, ...props }, ref) {
     const id = useId();
     return (
         <div className="w-full">
-            {lable && (
-                <lable htmlFor={id} className="">
+            {label && (
+                <label htmlFor={id} className="">
                     {" "}
-                </lable>
+                </label>
             )}
 
             <select

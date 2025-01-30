@@ -2,18 +2,18 @@ import { ID, Client, Databases, Query, Storage } from "appwrite";
 import conf from "../conf/conf";
 class Service {
   client = new Client();
-  database;
+  databases;
   bucket;
 
   constructor() {
     this.client.setEndpoint(conf.appWriteUrl).setProject(conf.projectId);
-    this.database = new Databases(this.client);
+    this.databases = new Databases(this.client);
     this.bucket = new Storage(this.client);
   }
 
   async createPost({ title, slug, content, featuredImage, status, userId }) {
     try {
-      await this.database.createDocument(
+      await this.databases.createDocument(
         conf.databaseId,
         conf.collectionId,
         //   ID.Unique()
@@ -32,7 +32,7 @@ class Service {
   }
   async getPost({ slug }) {
     try {
-      const post = await this.database.getDocument(
+      const post = await this.databases.getDocument(
         conf.databaseId,
         conf.collectionId,
         slug
@@ -48,7 +48,7 @@ class Service {
 
   async deletePost({ slug }) {
     try {
-      await this.database.deleteDocument(
+      await this.databases.deleteDocument(
         conf.databaseId,
         conf.collectionId,
         slug
@@ -61,7 +61,7 @@ class Service {
   }
   async updatePost(slug, { title, content, featuredImage, status }) {
     try {
-      return await database.updateDocument(
+      return await this.databases.updateDocument(
         conf.databaseId,
         conf.collectionId,
         slug,
@@ -80,7 +80,7 @@ class Service {
   }
   async getListOfPost(queries = [Query.equal("status", ["active"])]) {
     try {
-      return await database.listDocuments(
+      return await this.databases.listDocuments(
         conf.databaseId,
         conf.collectionId,
         queries
@@ -93,7 +93,7 @@ class Service {
 
   async uploadFile(file) {
     try {
-      return await bucket.createFile(conf.bucketId, ID.unique(), file);
+      return await this.bucket.createFile(conf.bucketId, ID.unique(), file);
     } catch (error) {
       console.log("Appwrite serive :: uploadFile :: error", error);
       return;

@@ -11,7 +11,7 @@ export class AuthService {
 
   async createAccout({ email, password, name }) {
     try {
-      const userAccount = await this.account.createAccout(
+      const userAccount = await this.account.create(
         ID.unique(),
         email,
         password,
@@ -33,16 +33,13 @@ export class AuthService {
       throw error;
     }
   }
-
   async getCurrentUser() {
     try {
-      console.log("CHecknig user info ");
-
-      const user = await this.account.get();
-      console.log("CHecknig user info " + user);
-      return user;
+      const session = await this.account.getSession("current");
+      if (!session) throw new Error("No active session");
+      return await this.account.get();
     } catch (error) {
-      console.log("Appwrite serive :: getCurrentUser :: error", error);
+      console.log("Appwrite service :: getCurrentUser :: error", error);
     }
 
     return null;
