@@ -37,27 +37,27 @@ const Header = () => {
             <Container>
                 <div className="flex justify-between items-center bg-slate-400">
                     {/* Logo on the left */}
-                    <div className="logo">
+                    <div className="logo pl-8">
                         <Logo />
                     </div>
 
                     {/* Navigation items */}
-                    <ul className="flex gap-3 items-center pr-4">
+                    <ul className="flex gap-3 items-center pr-4 py-2">
                         {navItems.map((item) =>
                             item.active ? (
                                 <li key={item.name}>
-                                    <button
-                                        onClick={() => navigate(item.slug)}
-                                        className="inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full"
+                                    <NavLink
+                                        to={item.slug}
+                                        className={({ isActive }) => (isActive ? " bg-blue-100 rounded-full px-4 py-1" : "rounded-full px-4 py-1  hover:bg-blue-100 p-1 ")}
                                     >
                                         {item.name}
-                                    </button>{" "}
+                                    </NavLink>
                                 </li>
                             ) : null
                         )}
 
                         {authStatus && (
-                            <li>
+                            <li >
                                 <LogoutBtn />
                             </li>
                         )}

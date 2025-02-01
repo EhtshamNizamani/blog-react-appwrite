@@ -10,8 +10,9 @@ function EditPost() {
     const navigate = useNavigate()
 
     useEffect(() => {
+        console.log("I am here to the edit post " + slug);
         if (slug) {
-            appwriteService.getPost(slug).then((post) => {
+            appwriteService.getPost({ slug }).then((post) => {
                 if (post) {
                     setPosts(post)
                 }

@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { Container, PostCard } from '../index'
 import appwriteService from '../../appwrite/config'
-import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 function Home() {
     const [posts, setPosts] = useState([]);
+    const lcoation = useLocation();
+    console.log("helowww " + posts)
     useEffect(() => {
-        appwriteService.getListOfPost([]).then((posts) => {
+        setPosts([])
 
+        appwriteService.getListOfPost([]).then((posts) => {
+            console.log("these are post " + JSON.stringify(posts, null, 2))
             if (posts) {
                 setPosts(posts.documents)
             }
 
         })
 
-    }, [])
+    }, [lcoation])
 
     if (posts.length === 0) {
         return (
@@ -22,7 +26,7 @@ function Home() {
                     <div className="flex flex-wrap">
                         <div className="p-2 w-full">
                             <h1 className="text-2xl font-bold">
-                                There is no any post yet!
+                                Please login to read post
                             </h1>
                         </div>
                     </div>
@@ -35,7 +39,7 @@ function Home() {
             <Container>
                 <div className='flex flex-wrap'>
                     {posts.map((post) => (
-                        <div key={post.$id} className='p-2 w-1/4'>
+                        <div key={post.$id} className='p-2 w-1/4 '>
                             <PostCard {...post} />
                         </div>
                     ))}

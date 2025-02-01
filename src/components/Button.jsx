@@ -10,7 +10,7 @@ const Button = ({ children,
 
     return (
 
-        <button className={`px-4 py-2 rounded-lg ${bgColor} ${textColor} ${className}`} {...props}>
+        <button className={`px-4 py-2 rounded-lg  ${bgColor} ${textColor} ${className}  hover:bg-blue-700 `} {...props}>
             {children}
         </button>
     )

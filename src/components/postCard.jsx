@@ -4,9 +4,9 @@ import Service from '../appwrite/config'
 function PostCard({ $id, title, featuredImage }) {
     return (
         <Link to={`/post/${$id}`}>
-            <div className='w-full bg-grey-100 rounded-xl p-4'>
+            <div className='w-full bg-slate-50  rounded-xl p-4  hover:bg-slate-200'>
                 <div className='w-full justify-center p-4'>
-                    <img src={Service.getFilePreview(featuredImage)} alt="" />
+                    <img className='hover:bg-slate-200' src={Service.getFilePreview(featuredImage)} alt="" />
 
                 </div>
                 <h2 className=' text-black'>{title}</h2>

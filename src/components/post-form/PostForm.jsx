@@ -28,7 +28,8 @@ function PostForm({ post }) {
             const dbPost = await appwriteService.updatePost(post.$id, {
 
                 ...data,
-                featuredImage: file ? file.$id : undefined
+                featuredImage: file ? file.$id : undefined,
+                userId: userData.$id
 
             })
             if (dbPost) {

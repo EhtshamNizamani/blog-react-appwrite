@@ -32,6 +32,8 @@ class Service {
   }
   async getPost({ slug }) {
     try {
+      console.log("this 1 is post " + JSON.stringify(slug, 2, null));
+
       const post = await this.databases.getDocument(
         conf.databaseId,
         conf.collectionId,
@@ -59,7 +61,7 @@ class Service {
       return false;
     }
   }
-  async updatePost(slug, { title, content, featuredImage, status }) {
+  async updatePost(slug, { title, content, featuredImage, status, userId }) {
     try {
       return await this.databases.updateDocument(
         conf.databaseId,
@@ -109,9 +111,9 @@ class Service {
       return false;
     }
   }
-  async getFilePreview(fileId) {
+  getFilePreview(fileId) {
     try {
-      return await this.bucket.getFilePreview(conf.bucketId, fileId);
+      return this.bucket.getFilePreview(conf.bucketId, fileId);
     } catch (error) {
       console.log("Appwrite serive :: createFile :: error", error);
 
