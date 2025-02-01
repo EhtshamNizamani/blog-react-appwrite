@@ -7,14 +7,15 @@ import { login as authLogin } from "../store/authSlicer";
 import { useNavigate, Link } from "react-router-dom";
 
 function Signup() {
-    const { error, setError } = useState("");
+    const [error, setError] = useState("");
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm();
     const dispatch = useDispatch();
     const siginup = async (data) => {
         try {
             setError("");
-            const session = await authService.createAccout();
+            console.log(data);
+            const session = await authService.createAccout(data);
             if (session) {
                 const userData = await authService.getCurrentUser();
                 if (userData) dispatch(authLogin(userData))
@@ -48,7 +49,7 @@ function Signup() {
                     label="Full Name: "
                     placeholder="Enter your name"
 
-                    {...register("Name", {
+                    {...register("name", {
                         required: true,
 
                     })}
@@ -57,7 +58,7 @@ function Signup() {
                     label="Email: "
                     placeholder="Enter your email"
 
-                    {...register("Email", {
+                    {...register("email", {
                         required: true,
                         validate: {
                             matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
@@ -67,9 +68,10 @@ function Signup() {
                 />
                 <Input
                     label="Password: "
+                    type="Password"
                     placeholder="Enter your password"
 
-                    {...register("Password", {
+                    {...register("password", {
                         required: true,
 
                     })}

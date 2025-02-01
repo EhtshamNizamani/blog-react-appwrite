@@ -4,17 +4,14 @@ import appwriteService from '../../appwrite/config'
 import { useSelector } from 'react-redux';
 function Home() {
     const [posts, setPosts] = useState([]);
-    const authStatus = useSelector(state => state.auth?.status)
     useEffect(() => {
-        if (authStatus) {
-            appwriteService.getListOfPost([]).then((posts) => {
+        appwriteService.getListOfPost([]).then((posts) => {
 
-                if (posts) {
-                    setPosts(posts.documents)
-                }
+            if (posts) {
+                setPosts(posts.documents)
+            }
 
-            })
-        }
+        })
 
     }, [])
 
