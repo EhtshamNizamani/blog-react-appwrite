@@ -77,7 +77,7 @@ function Signup() {
                     })}
 
                 />
-                <Button type="submit" className="w-full mt-4">
+                <Button type="submit" className="w-full mt-4 hover:">
                     Create Account
                 </Button>
             </form>
