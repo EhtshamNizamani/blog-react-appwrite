@@ -6,6 +6,8 @@ import appwriteService from '../../appwrite/config'
 import { useForm } from "react-hook-form";
 
 function PostForm({ post }) {
+    const [isLoading, setIsLoading] = useState(false);
+
     const { register, handleSubmit, watch, control, setValue, getValues } = useForm({
         defaultValues: {
             title: post?.title || "",
@@ -19,6 +21,7 @@ function PostForm({ post }) {
     const userData = useSelector((state) => state.auth.userData)
 
     const submit = async (data) => {
+        setIsLoading(true);
         if (post) {
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null
             if (file) {
@@ -54,6 +57,8 @@ function PostForm({ post }) {
 
 
         }
+        setIsLoading(false);
+
 
     }
     const slugTransform = useCallback((value,) => {
@@ -119,7 +124,9 @@ function PostForm({ post }) {
                     className="mb-4"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+                <Button
+                    isLoading={isLoading}
+                    type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
                     {post ? "Update" : "Submit"}
                 </Button>
             </div>

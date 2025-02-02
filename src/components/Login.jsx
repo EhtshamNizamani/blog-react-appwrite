@@ -10,8 +10,10 @@ function Login() {
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm()
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const login = async (data) => {
+        setIsLoading(true)
         try {
             setError("")
             const session = await authService.login(data);
@@ -21,9 +23,12 @@ function Login() {
                 navigate("/");
             }
 
+            setIsLoading(false)
 
         } catch (error) {
             setError(error.message);
+            setIsLoading(false)
+
         }
     }
 
@@ -78,6 +83,7 @@ function Login() {
                             className="w-full"
                             children="Sign in"
                             hoverColor="bg-blue-700"
+                            isLoading={isLoading}
                         />
                     </div>
                 </form>

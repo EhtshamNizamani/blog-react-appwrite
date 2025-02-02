@@ -8,12 +8,15 @@ import { useNavigate, Link } from "react-router-dom";
 
 function Signup() {
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm();
     const dispatch = useDispatch();
     const siginup = async (data) => {
         try {
             setError("");
+            setIsLoading(true);
             console.log(data);
             const session = await authService.createAccout(data);
             if (session) {
@@ -21,8 +24,12 @@ function Signup() {
                 if (userData) dispatch(authLogin(userData))
                 navigate("/")
             }
+            setIsLoading(false);
+
         } catch (error) {
             setError(error.message);
+            setIsLoading(false);
+
 
         }
     };
@@ -77,7 +84,9 @@ function Signup() {
                     })}
 
                 />
-                <Button type="submit" className="w-full mt-4 hover:">
+                <Button
+                    isLoading={isLoading}
+                    type="submit" className="w-full mt-4 hover:">
                     Create Account
                 </Button>
             </form>
