@@ -12,7 +12,7 @@ import Login from "./Login";
 import PostForm from "./post-form/PostForm";
 import AuthLayout from "./AuthLayout";
 import LogoutBtn from "./Header/LogoutBtn";
-
+import PostSkeleton from "./PostSkelton";
 export {
   Header,
   Select,
@@ -21,6 +21,7 @@ export {
   RTE,
   PostCard,
   Button,
+  PostSkeleton,
   Logo,
   Container,
   Signup,

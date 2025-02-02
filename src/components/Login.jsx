@@ -77,6 +77,7 @@ function Login() {
                             type="submit"
                             className="w-full"
                             children="Sign in"
+                            hoverColor="bg-blue-700"
                         />
                     </div>
                 </form>

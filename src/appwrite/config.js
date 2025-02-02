@@ -13,7 +13,7 @@ class Service {
 
   async createPost({ title, slug, content, featuredImage, status, userId }) {
     try {
-      await this.databases.createDocument(
+      return await this.databases.createDocument(
         conf.databaseId,
         conf.collectionId,
         //   ID.Unique()
