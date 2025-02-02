@@ -5,7 +5,7 @@ import Logo from "./Logo.jsx";
 import Container from "./Container/Container.jsx";
 import Input from "./input.jsx";
 import RTE from "./RTE.jsx";
-import PostCard from "./PostCard.jsx";
+import PostCard from "./postCard.jsx";
 import Select from "./Select.jsx";
 import Signup from "./Signup.jsx";
 import Login from "./Login.jsx";
