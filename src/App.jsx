@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { login, logout } from "../src/store/authSlicer";
 import { useDispatch } from 'react-redux'
 import authService from "../src/appwrite/auth";
-import { Header, Footer } from "../src/components/index";
+import { Header, Footer } from "../src/components/index.js";
 import { Outlet } from "react-router-dom";
 function App() {
   const [loading, setLoading] = useState(true)
