@@ -11,7 +11,7 @@ import Signup from "./Signup.jsx";
 import Login from "./Login.jsx";
 import PostForm from "./post-form/PostForm.jsx";
 import AuthLayout from "./AuthLayout.jsx";
-import LogoutBtn from "./header/logoutBtn.jsx";
+import LogoutBtn from "./header/LogoutBtn.jsx";
 import PostSkeleton from "./PostSkelton.jsx";
 export {
   Header,
