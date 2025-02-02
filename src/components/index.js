@@ -2,7 +2,7 @@ import Header from "./header/Header.jsx";
 import Footer from "./footer/Footer.jsx";
 import Button from "./Button.jsx";
 import Logo from "./Logo.jsx";
-import Container from "./container/Container.jsx";
+import Container from "./Container/Container.jsx";
 import Input from "./Input.jsx";
 import RTE from "./RTE.jsx";
 import PostCard from "./PostCard.jsx";
