@@ -19,7 +19,8 @@ function Login() {
             const session = await authService.login(data);
             if (session) {
                 const userData = await authService.getCurrentUser();
-                if (userData) dispatch(authLogin(userData));
+
+                if (userData) dispatch(authLogin({ userData }));
                 navigate("/");
             }
 
@@ -82,7 +83,6 @@ function Login() {
                             type="submit"
                             className="w-full"
                             children="Sign in"
-                            hoverColor="bg-blue-700"
                             isLoading={isLoading}
                         />
                     </div>

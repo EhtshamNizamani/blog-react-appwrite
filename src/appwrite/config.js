@@ -32,8 +32,6 @@ class Service {
   }
   async getPost({ slug }) {
     try {
-      console.log("this 1 is post " + JSON.stringify(slug, 2, null));
-
       const post = await this.databases.getDocument(
         conf.databaseId,
         conf.collectionId,

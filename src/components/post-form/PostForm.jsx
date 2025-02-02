@@ -39,7 +39,6 @@ function PostForm({ post }) {
                 navigate(`/post/${dbPost.$id}`)
             }
         } else {
-            console.log("dbPostdbPost ====> " + JSON.stringify(data, null, 2));
 
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
             if (file) {

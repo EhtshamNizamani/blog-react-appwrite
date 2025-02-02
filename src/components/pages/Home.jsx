@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Container, PostCard } from '../index'
 import appwriteService from '../../appwrite/config'
-import { useLocation } from 'react-router-dom';
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 function Home() {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true)
-    const lcoation = useLocation();
-    console.log("helowww " + posts)
     useEffect(() => {
         setPosts([])
 
         appwriteService.getListOfPost([]).then((posts) => {
-            console.log("these are post " + JSON.stringify(posts, null, 2))
             if (posts) {
                 setPosts(posts.documents)
             }
