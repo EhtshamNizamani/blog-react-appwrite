@@ -23,8 +23,8 @@ function AllPosts() {
                         {[...Array(6)].map((_, index) => (
                             <div key={index} className="p-2 w-1/4">
                                 <Skeleton height={index % 2 === 0 ? 290 : 200}
-                                    borderRadius={8} // Optional: Add rounded corners
-                                    highlightColor="#eee" // Customize shimmer color
+                                    borderRadius={8}
+                                    highlightColor="#eee"
                                     duration={1.5}
                                 />
                                 <Skeleton height={20} width="80%" className="mt-2" />
