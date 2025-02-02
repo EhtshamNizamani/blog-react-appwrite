@@ -8,11 +8,11 @@ import RTE from "./RTE.jsx";
 import PostCard from "./postCard.jsx";
 import Select from "./select.jsx";
 import Signup from "./Signup.jsx";
-import Login from "./login.jsx";
+import Login from "./Login.jsx";
 import PostForm from "./post-form/PostForm.jsx";
-import AuthLayout from "./authLayout.jsx";
+import AuthLayout from "./AuthLayout.jsx";
 import LogoutBtn from "./header/logoutBtn.jsx";
-import PostSkeleton from "./postSkelton.jsx";
+import PostSkeleton from "./PostSkelton.jsx";
 export {
   Header,
   Select,
