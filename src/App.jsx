@@ -18,6 +18,7 @@ function App() {
           dispatch(login({ userData }))
         } else {
           dispatch(logout())
+
         }
       })
       .finally(() => setLoading(false))

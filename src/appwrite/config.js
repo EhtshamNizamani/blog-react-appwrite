@@ -46,7 +46,8 @@ class Service {
     }
   }
 
-  async deletePost({ slug }) {
+  async deletePost(slug) {
+    console.log("SLUG SLUGss " + slug);
     try {
       await this.databases.deleteDocument(
         conf.databaseId,
