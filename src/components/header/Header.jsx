@@ -1,10 +1,11 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useNavigate, Link, NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { useSelector, } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { Container, Logo, LogoutBtn } from "../index";
 const Header = () => {
     const authStatus = useSelector((state) => state.auth?.status);
-    const navigate = useNavigate();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     const navItems = [
         {
             name: "Home",
@@ -37,12 +38,17 @@ const Header = () => {
             <Container>
                 <div className="flex justify-between items-center bg-slate-400">
                     {/* Logo on the left */}
-                    <div className="logo pl-8">
+                    <div className="logo pl-8 pr-4 py-1">
                         <Logo />
                     </div>
-
+                    <div className="sm:hidden flex justify-center items-center pl-8">
+                        <i
+                            className="bx bx-menu text-2xl px-4 py-1 cursor-pointer "
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        ></i>
+                    </div>
                     {/* Navigation items */}
-                    <ul className="flex gap-3 items-center pr-4 py-2">
+                    <ul className="hidden sm:flex gap-3 items-center pr-4 py-1  ">
                         {navItems.map((item) =>
                             item.active ? (
                                 <li key={item.name}>
@@ -61,8 +67,37 @@ const Header = () => {
                                 <LogoutBtn />
                             </li>
                         )}
+
+
                     </ul>
                 </div>
+
+
+
+                <ul className={` sm:hidden flex flex-col items-center justify-center transition-all duration-300 bg-white " ${isMenuOpen ? "opacity-100" : "hidden opacity-0"}`}>
+                    {navItems.map((item) =>
+                        item.active ? (
+                            <li key={item.name} className="w-full flex py-1 ">
+                                <NavLink
+                                    to={item.slug}
+                                    className={({ isActive }) => (isActive ? " bg-blue-100 rounded-sm px-4 py-1 w-full text-center" : "rounded-sm px-4 py-1 text-center hover:bg-blue-100 p-1 w-full text-center ")}
+                                >
+                                    {item.name}
+                                </NavLink>
+                            </li>
+                        ) : null
+                    )}
+
+                    {authStatus && (
+                        <li >
+                            <LogoutBtn />
+                        </li>
+                    )}
+
+
+                </ul>
+
+
             </Container>
         </header>
     );
